@@ -1,0 +1,108 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+const API_ENDPOINT = "http://ec2-3-7-55-32.ap-south-1.compute.amazonaws.com/api/v1";
+
+export const serverApi = createApi({
+  reducerPath: 'serverApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${API_ENDPOINT}`,
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState()).authSlice.token;
+      if (token) {
+        headers.set('authorization', `${token}`)
+      }
+      return headers
+    },
+  }),
+
+  tagTypes: ["Reviews", "Spot"],
+
+  endpoints: (builder) => ({
+
+    //User Login
+    loginUser: builder.mutation({
+      query: (payload) => ({
+        url: "users/log_in",
+        method: "POST",
+        body: payload
+      })
+    }),
+
+    createSpot: builder.mutation({
+      query: (payload) => ({
+        url: "spots",
+        method: "POST",
+        body: payload
+      })
+    }),
+
+    editSpot: builder.mutation({
+      query: ({id, payload}) => ({
+        url: `spots/${id}`,
+        method: "PUT",
+        body: payload
+      }),
+      invalidatesTags: ["Spot"],
+    }),
+
+    //Getting all Spots
+    getSpots: builder.query({
+      query: () => 'spots'
+    }),
+
+    //Getting Spot By id
+    getSpotById: builder.query({
+      query: ({id}) => `spots/${id}`,
+      providesTags: ["Reviews", "Spot"],
+    }),
+
+    //Getting all Spots
+    getSpotsByLoc: builder.query({
+      query: ({id}) => `spots/spots_by_location?location=${id}`
+    }),
+
+    //Getting all Locations
+    getLocations: builder.query({
+      query: () => 'spots/locations'
+    }),
+
+    //Get Queries
+    getReviews: builder.query({
+      query: ({id}) => `spots/${id}/reviews`,
+      providesTags: ["Reviews"],
+    }),
+
+    createReview: builder.mutation({
+      query: ({id, payload}) => ({
+        url: `spots/${id}/reviews`,
+        method: "POST",
+        body: payload
+      }),
+      invalidatesTags: ["Reviews"],
+    }),
+
+    getUserSpots: builder.query({
+      query: () => `spots/current_user_spots`,
+      providesTags: ["Spot"]
+    }),
+
+    getTopRatedSpots: builder.query({
+      query: () => `spots/high_ranking_spots`
+    }),
+  })
+
+})
+
+export const {
+  useLoginUserMutation,
+  useCreateSpotMutation,
+  useGetSpotsQuery,
+  useGetLocationsQuery,
+  useGetSpotsByLocQuery,
+  useGetSpotByIdQuery,
+  useGetReviewsQuery,
+  useCreateReviewMutation,
+  useGetUserSpotsQuery,
+  useEditSpotMutation,
+  useGetTopRatedSpotsQuery
+} = serverApi;
