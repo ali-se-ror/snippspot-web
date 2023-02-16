@@ -4,7 +4,7 @@ import { selectToken } from "../store/features/auth.slice";
 
 const ProtectedRoute = ({ children }) => {
   const token = useSelector(selectToken);
-  return token ? <Navigate to="/host_spots" /> : children;
+  return token ? <Navigate to="/" /> : children;
 };
 
 export default ProtectedRoute;

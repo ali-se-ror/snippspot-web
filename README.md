@@ -9,9 +9,12 @@ To run the project you can follow these
 
 You can also change the api endpoint in (src/store/services/serverApi.js)
 
+Deployed Link: http://ec2-3-7-55-32.ap-south-1.compute.amazonaws.com/
+
 Test Credentials For User:
-Email: user1@gmail.com
-Password: 123456
+Email: ali@mail.com Password: 123456
+Email: john@mail.com Password: 123456
+Email: missy@mail.com Password: 123456
 
 App Flow:
 Running the App will take you to home page, On homepage you can see

@@ -4,7 +4,7 @@ import SpotListCard from "./SpotsListCard";
 import { useGetUserSpotsQuery } from "store/services/serverApi";
 
 const SpotsList = () => {
-  const { data } = useGetUserSpotsQuery(1, { refetchOnMountOrArgChange: true });
+  const { data } = useGetUserSpotsQuery(1, { refetchOnMountOrArgChange: true, refetchOnFocus: true });
 
   return (
     <>

@@ -4,7 +4,7 @@ import LocationCard from "./LocationCard";
 import { useGetLocationsQuery } from "store/services/serverApi";
 
 const Locations = () => {
-  const { data } = useGetLocationsQuery(1, { refetchOnMountOrArgChange: true });
+  const { data } = useGetLocationsQuery(1, { refetchOnFocus: true, refetchOnMountOrArgChange: true });
 
   return (
     <>

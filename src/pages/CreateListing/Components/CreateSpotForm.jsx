@@ -44,7 +44,6 @@ const CreateSpotForm = () => {
   const [inputValue, setInputValue] = useState('');
 
   const onSubmit = (data) => {
-    console.log("Input", data);
     if (images.length === 0) {
       toast.warn("Please select images to add");
       return;
@@ -218,7 +217,7 @@ const CreateSpotForm = () => {
                 Add Photos (Optional)
               </Typography>
               <Typography>
-                10+ photos recommended. Include the space, fencing and parking area.
+                4+ photos recommended. Include the space, fencing and parking area.
               </Typography>
             </Box>
             <Box mt={3}>

@@ -33,7 +33,6 @@ const schema = yup.object({
 export default function EditSpotModal({ open, setOpen, id }) {
   const { data, isFetching } = useGetSpotByIdQuery({ id: id }, { refetchOnMountOrArgChange: true });
   const [editSpot, { isLoading, isError, isSuccess }] = useEditSpotMutation();
-  console.log("ID", id);
 
   const { control, handleSubmit, setValue, formState: { errors } } = useForm({
     resolver: yupResolver(schema)

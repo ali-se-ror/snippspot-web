@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 const BookBox = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetSpotByIdQuery({id: id});
-  console.log("D", data);
 
   return (
     <Paper

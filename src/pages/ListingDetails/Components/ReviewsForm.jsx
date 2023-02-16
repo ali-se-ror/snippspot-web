@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useParams } from "react-router-dom";
 import { useCreateReviewMutation } from "store/services/serverApi";
-import { toast } from "react-toastify";
 
 const schema = yup.object({
   desc: yup.string().required("Review Description is required"),

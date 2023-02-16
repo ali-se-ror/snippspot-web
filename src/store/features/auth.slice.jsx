@@ -38,7 +38,7 @@ export function logoutAsync() {
   return async (dispatch) => {
     dispatch(setToken(""));
     dispatch(setUser({}));
-    dispatch({ type: "signout/logout" });
+    // dispatch({ type: "signout/logout" });
     return true;
   };
 }
